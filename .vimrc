@@ -101,6 +101,7 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 " Show all open buffers, their status and allows to switch to a new buffer
 nmap <leader>bl :ls<CR>:b<space>
 
+
 call plug#end()
 
 cmap w!! w !sudo tee > /dev/null %

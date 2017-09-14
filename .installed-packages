@@ -86,7 +86,6 @@ mupdf
 ncmpcpp
 neofetch
 neomutt
-neovim
 nodejs
 noto-fonts
 openssh
@@ -143,6 +142,7 @@ ufw
 unzip
 usbutils
 util-linux
+vim
 w3m
 webstorm
 webstorm-jre
