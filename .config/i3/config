@@ -1,0 +1,260 @@
+set $mod Mod4
+set $alt Mod1
+
+set $term urxvt
+set $exec_silent exec --no-startup-id
+set $lock i3lock-next "Open Sans" 18
+
+font pango:Envy Code R, 9
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+bindsym $mod+Return exec $term
+bindsym $mod+Shift+q kill
+bindcode 124 kill
+bindsym $mod+d $exec_silent rofi -show drun -lines 7 -font 'Envy Code R 28'
+bindsym $mod+Tab $exec_silent rofi -show window -font 'Envy Code R 28'
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+# alternatively, you can use the cursor keys:
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal orientation
+bindsym $mod+h split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+set $base00 #272822
+set $base01 #383830
+set $base02 #49483e
+set $base03 #75715e
+set $base04 #a59f85
+set $base05 #f8f8f2
+set $base06 #f5f4f1
+set $base07 #f9f8f5
+set $base08 #f92672
+set $base09 #fd971f
+set $base0A #f4bf75
+set $base0B #a6e22e
+set $base0C #a1efe4
+set $base0D #66d9ef
+set $base0E #ae81ff
+set $base0F #cc6633
+
+
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
+
+# switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -f 'pango: Envy Code R, 10' -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+# Basic color configuration using the Base16 variables for windows and borders.
+# Property Name         Border  BG      Text    Indicator Child Border
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color2 #f0f0f0
+
+set_from_resource $color0 i3wm.color0
+set_from_resource $color1 i3wm.color1
+set_from_resource $color2 i3wm.color2
+set_from_resource $color3 i3wm.color3
+set_from_resource $color4 i3wm.color4
+set_from_resource $color5 i3wm.color5
+set_from_resource $color6 i3wm.color6
+set_from_resource $color7 i3wm.color7
+set_from_resource $color8 i3wm.color8
+set_from_resource $color9 i3wm.color9
+set_from_resource $color10 i3wm.color10
+set_from_resource $color11 i3wm.color11
+set_from_resource $color12 i3wm.color12
+set_from_resource $color13 i3wm.color13
+set_from_resource $color14 i3wm.color14
+set_from_resource $color15 i3wm.color15
+
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+
+client.background       $bg
+
+bar {
+	position bottom 
+	separator_symbol " / "
+	status_command i3status --config ~/.config/i3/status.conf
+
+    colors {
+        background $color0
+        separator  $color9
+        statusline $color5
+
+        # State             Border  BG      Text
+        focused_workspace   $color9 $base0D $base00
+        active_workspace    $color9 $base03 $base00
+        inactive_workspace  $bg $base01 $base05
+        urgent_workspace    $base08 $base08 $base00
+        binding_mode        $base00 $base0A $base00
+    }
+}
+
+# Scratchpad management
+bindsym $mod+minus			scratchpad show
+bindsym $mod+Shift+minus	move scratchpad
+
+# Set shut down, restart and locking features
+bindsym $mod+Shift+Return mode "$mode_system"
+set $mode_system (l)ock, (s)uspend, (r)eboot, (Shift+s)hutdown
+
+mode "$mode_system" {
+    bindsym l exec $lock, mode "default"
+    bindsym s exec systemctl suspend, mode "default"
+    bindsym r exec systemctl reboot, mode "default"
+    bindsym Shift+s exec systemctl poweroff, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+x mode "launch"
+mode "launch" {
+	bindsym x exec qutebrowser --backend webengine; mode "default"
+    bindsym r exec $term -e 'ranger'; mode "default"
+	
+	# back to normal
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+# Launch shit
+$exec_silent redshift -l 54.68:25.28
+$exec_silent udiskie --tray --no-automount
+$exec_silent compton --config ~/.config/compton.conf
+$exec_silent dunst
+$exec_silent conky -c ~/.config/conky.conf
+
+# Launch initial apps
+$exec_silent i3-msg 'workspace $ws9; exec $term -e weechat; workspace $ws1'
+$exec_silent i3-msg 'workspace $ws10; exec $term -e mutt; exec $term -e ncmpcpp; workspace $ws1'
+
+# add bindings to control gaps
+bindsym $mod+i gaps inner all minus 8
+bindsym $mod+o gaps inner all plus 8
+bindsym $mod+p gaps inner all set 0
+
+# add wallpaper switcher binding
+bindsym $mod+u $exec_silent sh ~/.config/i3/wallpaper.sh
+
+smart_gaps on
+smart_borders on
+for_window [class="^.*"] border pixel 1
+
+gaps inner 16
+gaps outer 0
