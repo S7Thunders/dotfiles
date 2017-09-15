@@ -1,107 +1,124 @@
-set nocompatible            " don't emulate vi old-school features
-call plug#begin('~/.vim/plugged')
-execute pathogen#infect()
+set nocompatible              " be iMproved, required
+filetype off                  " required
+set exrc
 
-" Leader shortcuts
-let g:mapleader=','         " leader is comma
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" Load NerdTree when vim loaded without a file
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" ==== PLUGINS ====
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'vim-scripts/L9'
+Plugin 'tpope/vim-fugitive'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'scrooloose/nerdtree'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'scrooloose/syntastic'
+Plugin 'christoomey/vim-conflicted'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'mattn/emmet-vim'
+Plugin 'sjl/gundo.vim'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'tpope/vim-surround'
+Plugin 'kien/ctrlp.vim'
+Plugin 'godlygeek/tabular'
 
-" toggle NerdTree
-map <C-\> :NERDTreeToggle<CR>
-" toggle Gundo
-nnoremap <leader>u :GundoToggle<CR>
+" ==== PLUGIN THEMES ====
+Plugin 'vim-scripts/darktango.vim'
+Plugin 'jonathanfilip/vim-lucius'
+Plugin 'morhetz/gruvbox'
+" ==== END PLUGIN THEMES ====
 
-set ts=2 sw=2 et
+" ==== PLUGIN SYNTAXES ====
+Plugin 'cakebaker/scss-syntax.vim'
+Plugin 'othree/yajs.vim'
+Plugin 'mitsuhiko/vim-jinja'
+Plugin 'evanmiller/nginx-vim-syntax'
+" === END PLUGIN SYNTAXES ====
 
-syntax enable               " enable syntax processing
-filetype plugin on
-set tabstop=2               " number of visual spaces per TAB
-set softtabstop=2           " number of spaces in tab when editing
-set expandtab               " tabs are spaces
+" ==== END PLUGINS ====
 
-" UI config
-set number              " show line numbers
-set showcmd             " show command in bottom bar
-set cursorline          " highlight current line
-filetype indent on      " load filetype-specific indent files
-set wildmenu            " visual autocomplete for command menu
-set lazyredraw          " redraw only when we need to
-set showmatch           " highlight matching [{()}]
+call vundle#end()
+filetype plugin indent on
 
-" Searching
-set incsearch           " search as characters are entered
-set hlsearch            " highlight matches
+" ==== BASIC ====
+colorscheme gruvbox
+set guifont=Monospace\ 10
+set fillchars+=vert:\$
+syntax enable
+set background=dark
+set ruler
+set hidden
+set number
+set laststatus=2
+set smartindent
+set st=4 sw=4 et
+set shiftwidth=4
+set tabstop=4
+let &colorcolumn="100"
+:set guioptions-=m  "remove menu bar
+:set guioptions-=T  "remove toolbar
+:set guioptions-=r  "remove right-hand scroll bar
+:set guioptions-=L  "remove left-hand scroll bar
+:set lines=999 columns=999
 
-" Folding
-set foldenable          " enable folding
+set showcmd         " show command in bottom bar
+set cursorline      " highlight current line
+set wildmenu        " visual autocomplete for command menu
+set lazyredraw
+
+" search
+set incsearch       " search as characters are entered
+set hlsearch        " highlight matches
+:set smartcase       " case insensitive search
+
+" folding
+set foldenable      " enable folding
 set foldlevelstart=10   " open most folds by default
-set foldnestmax=10      " 10 nested fold max
-" space open/closes folds
+set foldnestmax=10      " 10 nested folds max
+" space open/close folds
 nnoremap <space> za
-set foldmethod=indent   " fold based on indent level
-
-
-set history=5000        " set history limit
+set foldmethod=indent
 
 if has('mouse')
-    set mouse=nv        " enable mouse in Normal and Visual modes
+    set mouse=nv    " enable mouse in Normal and Visual modes
 endif
 
-" jump to the last position in file when reopening a file
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+if has('autocmd')
+    au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 endif
 
-" tell Tern for vim what libs to autocomplete 
-let g:used_javascript_libs = 'underscore,angularjs,chai,handlebars,ramda,vue'
+" ==== NERDTREE ====
+let NERDTreeIgnore = []
+let g:NERDTreeWinPos="left"
+let g:NERDTreeDirArrows=0
+map <C-t> :NERDTreeToggle<CR>
 
-let g:javascript_plugin_jsdoc = 1
+" ==== Syntastic ====
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_javascript_checkers = ['eslint']
+let g:syntastic_javascript_mri_args = "--config=$HOME/.jshintrc"
+let g:syntastic_yaml_checkers = ['jsyaml']
+let g:syntastic_html_tidy_exec = 'tidy5'
 
-let g:javascript_conceal_function             = "ƒ"
-let g:javascript_conceal_null                 = "ø"
-let g:javascript_conceal_this                 = "@"
-let g:javascript_conceal_return               = "⇚"
-let g:javascript_conceal_undefined            = "¿"
-let g:javascript_conceal_NaN                  = "ℕ"
-let g:javascript_conceal_prototype            = "¶"
-let g:javascript_conceal_static               = "•"
-let g:javascript_conceal_super                = "Ω"
-let g:javascript_conceal_arrow_function       = "⇒"
-let g:javascript_conceal_noarg_arrow_function = "🞅"
-let g:javascript_conceal_underscore_arrow_function = "🞅"
+" ==== Easymotion ====
+let g:EasyMotion_do_mapping = 0
+let g:EasyMotion_smartcase = 1
+nmap f <Plug>(easymotion-s)
 
-set conceallevel=1
+nmap <silent> <A-Up> :wincmd k<CR>
+nmap <silent> <A-Down> :wincmd j<CR>
+nmap <silent> <A-Left> :wincmd h<CR>
+nmap <silent> <A-Right> :wincmd l<CR>
 
-" vim-airline config
-set laststatus=2    " make vim-airline appear always, not just with split windows 
-"let g:airline_powerline_fonts = 1
+" ==== TERN ====
+let g:used_javascript_libs = 'underscore,angularjs,chai,mocha,handlebars,ramda,vue'
 
-" Buffers
-set hidden
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-
-" To open a new empty buffer
-" This replaces :tabnew which I used to bind to this mapping
-nmap <leader>T :enew<CR>
-
-" Move to the next buffer
-nmap <leader>l :bnext<CR>
-
-" Move to the previous buffer
-nmap <leader>h :bprevious<CR>
-
-" Close the current buffer and move to the previous one
-" This replicates the idea of closing a tab
-nmap <leader>bq :bp <BAR> bd #<CR>
-
-" Show all open buffers, their status and allows to switch to a new buffer
-nmap <leader>bl :ls<CR>:b<space>
-
-
-call plug#end()
-
+set secure
 cmap w!! w !sudo tee > /dev/null %
