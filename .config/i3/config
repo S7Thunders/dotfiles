@@ -187,7 +187,7 @@ client.background       $bg
 
 bar {
 	position bottom 
-	separator_symbol " / "
+	separator_symbol " ¦ "
 	status_command i3status --config ~/.config/i3/status.conf
 
     colors {
@@ -198,7 +198,7 @@ bar {
         # State             Border  BG      Text
         focused_workspace   $color9 $base0D $base00
         active_workspace    $color9 $base03 $base00
-        inactive_workspace  $bg $base01 $base05
+        inactive_workspace  $bg     $base01 $base05
         urgent_workspace    $base08 $base08 $base00
         binding_mode        $base00 $base0A $base00
     }
@@ -235,10 +235,11 @@ mode "launch" {
 
 # Launch shit
 $exec_silent redshift -l 54.68:25.28
-$exec_silent udiskie --tray --no-automount
+#$exec_silent udiskie --tray --no-automount
 $exec_silent compton --config ~/.config/compton.conf
 $exec_silent dunst
 $exec_silent conky -c ~/.config/conky.conf
+$exec_silent nm-applet
 
 # Launch initial apps
 $exec_silent i3-msg 'workspace $ws9; exec $term -e weechat; workspace $ws1'

@@ -91,4 +91,5 @@ unsetopt correct_all
 # Import colorscheme from 'wal'
 (wal -r &)
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source $HOME/.oh-my-zsh/plugins/calc/calc.plugin.zsh
+

@@ -7,7 +7,6 @@ call vundle#begin()
 
 " ==== PLUGINS ====
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-scripts/L9'
 Plugin 'tpope/vim-fugitive'
 Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 Plugin 'scrooloose/nerdtree'
@@ -22,6 +21,7 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
 Plugin 'godlygeek/tabular'
+Plugin 'takac/vim-hardtime'
 
 " ==== PLUGIN THEMES ====
 Plugin 'vim-scripts/darktango.vim'
@@ -34,12 +34,16 @@ Plugin 'cakebaker/scss-syntax.vim'
 Plugin 'othree/yajs.vim'
 Plugin 'mitsuhiko/vim-jinja'
 Plugin 'evanmiller/nginx-vim-syntax'
+Plugin 'Yggdroot/indentLine'
 " === END PLUGIN SYNTAXES ====
 
 " ==== END PLUGINS ====
 
 call vundle#end()
 filetype plugin indent on
+
+" ==== VIM-HARDTIME ====
+" let g:hardtime_default_on = 1
 
 " ==== BASIC ====
 colorscheme gruvbox
