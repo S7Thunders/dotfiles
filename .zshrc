@@ -51,7 +51,7 @@ ENABLE_CORRECTION="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git extract npm sudo zsh-autosuggestions)
+plugins=(git extract sudo zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,8 +88,6 @@ fi
 
 unsetopt correct_all
 
-# Import colorscheme from 'wal'
-(wal -r &)
-
-source $HOME/.oh-my-zsh/plugins/calc/calc.plugin.zsh
-
+cat /home/laurynas/.cache/wal/sequences
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+#export http_proxy="http://localhost:3128"

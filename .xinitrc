@@ -3,16 +3,18 @@ xset r rate 270 30
 xrandr --dpi 200
 xrdb -merge ~/.Xresources
 xmodmap ~/.xmodmap
-xbindkeys -p
+light -I
 
-pkill python
 pkill redshift
+pkill compton
+pkill python
 
 export QT_AUTO_SCREEN_SCALE_FACTOR=1
 export GDK_SCALE=2
 export GDK_DPI_SCALE=0.5
 
-[ ! -s ~/.config/mpd/pid ] && mpd && mpc pause
-wal -t -i `cat ~/.fehbg | awk -F "'" '{print $2}' | xargs`
+setxkbmap -layout us,lt
+setxkbmap -option 'grp:alt_shift_toggle'
 
-exec i3
+wal -R
+exec dbus-launch i3

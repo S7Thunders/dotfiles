@@ -1,4 +1,4 @@
-Xft.dpi: 190
+Xft.dpi: 200
 Xft.autohint: 0
 Xft.lcdfilter:  lcddefault
 Xft.hintstyle:  hintfull
@@ -24,7 +24,7 @@ URxvt.secondaryScroll: 0
 
 URxvt.secondaryWheel: 1
 
-URxvt.font: xft:Envy Code R:size=11
+URxvt.font: xft:Iosevka Term:size=11
 URxvt.letterSpace: -1
 
 ! Clickable URLs

@@ -1,0 +1,9 @@
+# Dark theme.
+rofi.theme: ~/.cache/wal/colors-rofi-dark.rasi
+
+# Light theme.
+#rofi.theme: ~/.cache/wal/colors-rofi-light.rasi
+
+rofi.lines: 7
+rofi.bw: 2
+rofi.display-drun: λ 
